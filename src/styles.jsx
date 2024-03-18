@@ -62,4 +62,21 @@ export const Li = styled.li`
   letter-spacing: 0px;
   margin-top: 15px;
   margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    background-color: none;
+    border: none;
+    cursor: pointer;
+  }
+`;
+
+export const Rocket = styled.img`
+  width: 13px;
+  height: 13px;
+`;
+export const Trash = styled.img`
+  width: 12px;
+  height: 15px;
 `;

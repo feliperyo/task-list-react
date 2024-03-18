@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { Input, AddButton, Div, Header, Li } from "./styles";
+import { Input, AddButton, Div, Header, Li, Rocket, Trash } from "./styles";
 import { v4 as uuidv4 } from "uuid";
+
+import RocketImage from "./assets/rocket.png";
+import TrashImage from "./assets/trash.png";
 
 function App() {
   const [list, setList] = useState([]);
@@ -28,7 +31,13 @@ function App() {
         <main>
           <ul>
             {list.map((item) => (
-              <Li key={item.id}>{item.task}</Li>
+              <Li key={item.id}>
+                <Rocket src={RocketImage}></Rocket>
+                {item.task}
+                <button>
+                  <Trash src={TrashImage}></Trash>
+                </button>
+              </Li>
             ))}
           </ul>
         </main>
