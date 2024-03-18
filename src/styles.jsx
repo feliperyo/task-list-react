@@ -7,6 +7,7 @@ export const Div = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #434547;
 `;
 
 export const Header = styled.header`
@@ -19,13 +20,13 @@ export const Input = styled.input`
   width: 342px;
   padding: 11px 20px;
   border-radius: 5px;
-  border: 1px solid #8052ec;
+  border: 1px solid #fda03e;
   font-size: 15px;
   font-weight: 400;
   line-height: 18px;
   letter-spacing: 0px;
   outline: none;
-  color: #8052ec;
+  color: #fda03e;
 `;
 
 export const AddButton = styled.button`
@@ -33,7 +34,7 @@ export const AddButton = styled.button`
   height: 40px;
   padding: 10px 0px;
   border-radius: 5px;
-  background: #8052ec;
+  background: #fda03e;
   font-size: 17px;
   font-weight: 900;
   line-height: 3px;
@@ -54,10 +55,10 @@ export const Li = styled.li`
   width: 492px;
   padding: 21px 17px;
   border-radius: 5px;
-  box-shadow: 1px 4px 10px 0px #8052ec50;
-  background: #e4e4e4;
+  box-shadow: 1px 4px 10px 0px #fda03e50;
+  background: ${(props) => (props.isFinished ? "#edff95" : "#e4e4e4")};
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 900;
   line-height: 18px;
   letter-spacing: 0px;
   margin-top: 15px;
@@ -67,14 +68,15 @@ export const Li = styled.li`
 
   button {
     background-color: none;
+    background: none;
     border: none;
     cursor: pointer;
   }
 `;
 
 export const Rocket = styled.img`
-  width: 13px;
-  height: 13px;
+  width: 15px;
+  height: 15px;
 `;
 export const Trash = styled.img`
   width: 12px;

@@ -14,7 +14,19 @@ function App() {
   }
 
   function addNewTask() {
-    setList([{ id: uuidv4(), task }, ...list]);
+    setList([{ id: uuidv4(), task, finished: false }, ...list]);
+  }
+
+  function checkTask(id) {
+    const newList = list.map((item) =>
+      item.id === id ? { ...item, finished: !item.finished } : item
+    );
+    setList(newList);
+  }
+
+  function deleteTask(id) {
+    const newList = list.filter((item) => item.id !== id);
+    setList(newList);
   }
 
   return (
@@ -24,17 +36,19 @@ function App() {
           <Input
             onChange={InputValue}
             type="text"
-            placeholder="+ Nova Tarefa"
+            placeholder="Nova Tarefa"
           ></Input>
           <AddButton onClick={addNewTask}>Adicionar</AddButton>
         </Header>
         <main>
           <ul>
             {list.map((item) => (
-              <Li key={item.id}>
-                <Rocket src={RocketImage}></Rocket>
+              <Li isFinished={item.finished} key={item.id}>
+                <button onClick={() => checkTask(item.id)}>
+                  <Rocket src={RocketImage}></Rocket>
+                </button>
                 {item.task}
-                <button>
+                <button onClick={() => deleteTask(item.id)}>
                   <Trash src={TrashImage}></Trash>
                 </button>
               </Li>
