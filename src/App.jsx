@@ -1,30 +1,39 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Input, AddButton, Div, Header, Li } from "./styles";
-import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
-  const inputTask = useRef();
+  const [list, setList] = useState([]);
+  const [task, setTask] = useState([]);
 
-  async function addNewTask() {
-    const { data: newTask } = await axios.post("http://localhost:3001/tasks", {
-      task: inputTask.current.value,
-    });
-    setTasks([newTask, ...tasks]);
+  function InputValue(event) {
+    setTask(event.target.value);
+  }
+
+  function addNewTask() {
+    setList([{ id: uuidv4(), task }, ...list]);
   }
 
   return (
-    <Div>
-      <Header>
-        <Input ref={inputTask} type="text" placeholder="+ Nova Tarefa"></Input>
-        <AddButton onClick={addNewTask}>Adicionar</AddButton>
-      </Header>
-      <main>
-        <ul>
-          <Li>Fazer arroz</Li>
-        </ul>
-      </main>
-    </Div>
+    <>
+      <Div>
+        <Header>
+          <Input
+            onChange={InputValue}
+            type="text"
+            placeholder="+ Nova Tarefa"
+          ></Input>
+          <AddButton onClick={addNewTask}>Adicionar</AddButton>
+        </Header>
+        <main>
+          <ul>
+            {list.map((item) => (
+              <Li key={item.id}>{item.task}</Li>
+            ))}
+          </ul>
+        </main>
+      </Div>
+    </>
   );
 }
 
