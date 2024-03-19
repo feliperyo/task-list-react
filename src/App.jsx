@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, AddButton, Div, Header, Li, Rocket, Trash } from "./styles";
+import { Input, AddButton, Div, Header, Li, Rocket, Trash, H3 } from "./styles";
 import { v4 as uuidv4 } from "uuid";
 
 import RocketImage from "./assets/rocket.png";
@@ -7,14 +7,16 @@ import TrashImage from "./assets/trash.png";
 
 function App() {
   const [list, setList] = useState([]);
-  const [task, setTask] = useState([]);
+  const [task, setTask] = useState("");
 
   function InputValue(event) {
     setTask(event.target.value);
   }
 
   function addNewTask() {
-    setList([{ id: uuidv4(), task, finished: false }, ...list]);
+    if (task) {
+      setList([{ id: uuidv4(), task, finished: false }, ...list]);
+    }
   }
 
   function checkTask(id) {
@@ -42,17 +44,21 @@ function App() {
         </Header>
         <main>
           <ul>
-            {list.map((item) => (
-              <Li isFinished={item.finished} key={item.id}>
-                <button onClick={() => checkTask(item.id)}>
-                  <Rocket src={RocketImage}></Rocket>
-                </button>
-                {item.task}
-                <button onClick={() => deleteTask(item.id)}>
-                  <Trash src={TrashImage}></Trash>
-                </button>
-              </Li>
-            ))}
+            {list.length > 0 ? (
+              list.map((item) => (
+                <Li isFinished={item.finished} key={item.id}>
+                  <button onClick={() => checkTask(item.id)}>
+                    <Rocket src={RocketImage}></Rocket>
+                  </button>
+                  {item.task}
+                  <button onClick={() => deleteTask(item.id)}>
+                    <Trash src={TrashImage}></Trash>
+                  </button>
+                </Li>
+              ))
+            ) : (
+              <H3>Ainda não há tarefas aqui, adicione uma!</H3>
+            )}
           </ul>
         </main>
       </Div>
