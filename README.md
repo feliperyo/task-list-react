@@ -6,7 +6,7 @@
 <br>
 
 <div align="center">
-  <img height="475px" width="auto" src="https://github.com/feliperyo/task-list-react/blob/master/src/assets/mockup.png?raw=true"/>
+  <img width="600" src="https://github.com/feliperyo/task-list-react/blob/master/src/assets/mockup.png?raw=true"/>
 </div>
 <br>
 <h3 align="center">Task List funcional que exclui e marca "Tarefa Concluída".</h3>
